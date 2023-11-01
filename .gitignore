@@ -2,6 +2,8 @@
 /env
 *.sqlite3
 /catalog/migrations
+locallibrary/__init__.py
+locallibrary/__pycache__
 db.sqlite3
 migrations/
 local_settings.py
@@ -15,4 +17,5 @@ catalog/test/__pycache__/
 logs/
 temp/
 **/__init__.py
+.idea
 
