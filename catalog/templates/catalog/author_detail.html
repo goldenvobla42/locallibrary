@@ -1,13 +1,9 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Title: {{ book.title }}</h1>
+  <h1>{{ author.first_name }}, {{ author.last_name}}</h1>
 
-  <p><strong>Author:</strong> <a href="{{ book.author.get_absolute_url }}">{{ song.author }}</a></p>
-  <!-- author detail link not yet defined -->
-  <p><strong>Summary:</strong> {{ song.summary }}</p>
-  <p><strong>Language:</strong> {{ song.language }}</p>
-  <p><strong>Genre:</strong> {{ song.genre.all|join:", " }}</p>
+  <p><strong>{{ author.first_name }}, {{ author.last_name}}</strong> <a href="{{ song.author.get_absolute_url }}">{{ song.author }}</a></p>
 
   <div style="margin-left:20px;margin-top:20px">
     <h4>Copies</h4>
