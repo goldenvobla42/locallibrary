@@ -1,4 +1,6 @@
 .env
+.scannerwork
+.scannerwork/*
 /env
 *.sqlite3
 /catalog/migrations
