@@ -10,6 +10,7 @@ workflows:
     jobs:
       - aws-ecr/build_and_push_image:
           context: aws-dev
+          account_id: ${ACCOUNT_ID}
           auth:
             - aws-cli/setup:
                 role_arn: arn:aws:iam::515218242798:role/ci_cd_-circleci
