@@ -17,7 +17,7 @@ workflows:
           dockerfile: Dockerfile
           path: .
           repo: ${MY_APP_PREFIX}
-          #create-repo: true
+          create_repo: true
           tag: ${CIRCLE_SHA1}
 
       - aws-ecs/deploy_service_update:
