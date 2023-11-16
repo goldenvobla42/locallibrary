@@ -24,7 +24,6 @@ workflows:
       - aws-ecs/deploy_service_update:
           auth:
             - aws-cli/setup:
-                profile: OIDC-USER
                 role_arn: arn:aws:iam::515218242798:role/ci_cd_-circleci
           context: aws-dev
           family: '${MY_APP_PREFIX}-service'
