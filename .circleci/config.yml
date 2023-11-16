@@ -7,7 +7,7 @@ orbs:
 workflows:
   build_and_deploy:
     jobs:
-      - aws-ecr/build-and-push-image:
+      - aws-ecr/build_and_push_image:
           context: aws-dev
           create-repo: true
           dockerfile: Dockerfile
@@ -17,7 +17,7 @@ workflows:
 
       - aws-ecs/deploy-service-update:
           requires:
-            - aws-ecr/build-and-push-image
+            - aws-ecr/build_and_push_image
           context: aws-dev
           family: '${MY_APP_PREFIX}-service'
           cluster: '${MY_APP_PREFIX}-cluster'
