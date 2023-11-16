@@ -26,6 +26,6 @@ workflows:
           context: aws-dev
           family: '${MY_APP_PREFIX}-service'
           cluster: '${MY_APP_PREFIX}-cluster'
-          container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'
+          #container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'
           requires:
             - aws-ecr/build_and_push_image
