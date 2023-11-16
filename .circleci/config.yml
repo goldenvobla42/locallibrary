@@ -15,7 +15,7 @@ workflows:
           repo: circleci-ecr-demo
           tag: "$CIRCLE_SHA1"
 
-      - aws-ecs/deploy-service-update:
+      - aws-ecs/deploy_service_update:
           context: aws-dev
           family: '${MY_APP_PREFIX}-service'
           cluster: '${MY_APP_PREFIX}-cluster'
