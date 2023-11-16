@@ -13,7 +13,6 @@ workflows:
           profile: OIDC-USER
           auth:
             - aws-cli/setup:
-                profile-name: OIDC-USER
                 role_arn: arn:aws:iam::515218242798:role/ci_cd_-circleci
           create-repo: true
           dockerfile: Dockerfile
