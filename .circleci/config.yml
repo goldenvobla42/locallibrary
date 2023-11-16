@@ -13,10 +13,10 @@ workflows:
           auth:
             - aws-cli/setup:
                 role_arn: arn:aws:iam::515218242798:role/ci_cd_-circleci
-          create-repo: true
           dockerfile: Dockerfile
           path: .
           repo: ${MY_APP_PREFIX}
+          create-repo: true
           tag: ${CIRCLE_SHA1}
 
       - aws-ecs/deploy_service_update:
