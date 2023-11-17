@@ -20,7 +20,6 @@ workflows:
           tag: ${CIRCLE_SHA1}
 
       - aws-ecs/deploy_service_update:
-          auth:
           context: aws-dev
           family: '${MY_APP_PREFIX}-service'
           cluster: '${MY_APP_PREFIX}-cluster'
