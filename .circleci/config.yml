@@ -17,9 +17,7 @@ workflows:
                 profile_name: default
                 source_profile: default
             - run: >-
-                aws sts assume-role --role_arn
-                "arn:aws:iam::515218242798:role/ci_cd_-circleci" --role_session_name
-                AWSCLI-Session
+                aws sts assume-role --role_arn "arn:aws:iam::515218242798:role/ci_cd_-circleci" --role_session_name AWSCLI-Session
           context: aws-dev
           account_id: ${ACCOUNT_ID}
           region: ${AWS_REGION}
