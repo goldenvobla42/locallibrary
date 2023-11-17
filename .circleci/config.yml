@@ -9,7 +9,6 @@ workflows:
   build_and_deploy:
     jobs:
       - aws-ecr/build_and_push_image:
-          auth:
           context: aws-dev
           account_id: ${ACCOUNT_ID}
           region: ${AWS_REGION}
