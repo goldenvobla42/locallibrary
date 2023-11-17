@@ -12,6 +12,7 @@ workflows:
           auth:
             - aws-cli/role_arn_setup:
                 role_arn: ${AWS_ROLE}
+                profile_name: default
                 source_profile: default
           context: aws-dev
           account_id: ${ACCOUNT_ID}
