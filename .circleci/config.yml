@@ -10,13 +10,6 @@ workflows:
     jobs:
       - aws-ecr/build_and_push_image:
           auth:
-            - aws-cli/setup:
-                  profile_name: default
-            - aws-cli/role_arn_setup:
-                role_arn: ${AWS_ROLE}
-                profile_name: default
-                source_profile: default
-            - run: aws sts assume-role --role-arn ${AWS_ROLE} --role-session-name AWSCLI-Session
           context: aws-dev
           account_id: ${ACCOUNT_ID}
           region: ${AWS_REGION}
@@ -28,9 +21,6 @@ workflows:
 
       - aws-ecs/deploy_service_update:
           auth:
-            - aws-cli/setup:
-                role_arn: ${AWS_ROLE}
-                profile_name: "OIDC-PROFILE"
           context: aws-dev
           family: '${MY_APP_PREFIX}-service'
           cluster: '${MY_APP_PREFIX}-cluster'
