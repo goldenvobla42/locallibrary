@@ -12,7 +12,7 @@ workflows:
           auth:
             - aws-cli/setup:
                 role_arn: ${AWS_ROLE}
-                profile_name: default
+                profile_name: 'default'
           context: aws-dev
           account_id: ${ACCOUNT_ID}
           region: ${AWS_REGION}
