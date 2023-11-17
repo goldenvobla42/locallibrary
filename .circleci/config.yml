@@ -9,13 +9,13 @@ workflows:
   build_and_deploy:
     jobs:
       - aws-ecr/build_and_push_image:
-          context: aws-dev
-          account_id: ${ACCOUNT_ID}
-          region: ${AWS_REGION}
           auth:
             - aws-cli/setup:
                 role_arn: ${AWS_ROLE}
                 profile_name: "OIDC-PROFILE"
+          context: aws-dev
+          account_id: ${ACCOUNT_ID}
+          region: ${AWS_REGION}
           dockerfile: Dockerfile
           path: .
           repo: ${MY_APP_PREFIX}
