@@ -8,15 +8,14 @@ orbs:
 workflows:
   build_and_deploy:
     jobs:
-      - aws-ecr/build_and_push_image:
-          context: aws-dev
-          account_id: ${ACCOUNT_ID}
-          region: ${AWS_REGION}
-          dockerfile: Dockerfile
-          path: .
-          repo: ${MY_APP_PREFIX}
-          create_repo: true
-          tag: ${CIRCLE_SHA1}
+      - aws-ecr/build-and-push-image:
+            context: aws-dev
+            account_id: ${ACCOUNT_ID}
+            create-repo: true
+            dockerfile: Dockerfile
+            path: .
+            repo: circleci-ecr-demo
+            tag: "$CIRCLE_SHA1"
 
       - aws-ecs/deploy_service_update:
           context: aws-dev
