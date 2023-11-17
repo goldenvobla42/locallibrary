@@ -28,9 +28,9 @@ workflows:
           auth:
             - aws-cli/setup:
                 role_arn: ${AWS_ROLE}
-                profile-name: "OIDC-PROFILE"
-                role-session-name: “deployment-session”
-                session-duration: "1800"
+                profile_name: "OIDC-PROFILE"
+                role_session_name: “deployment-session”
+                session_duration: "1800"
           context: aws-dev
           family: '${MY_APP_PREFIX}-service'
           cluster: '${MY_APP_PREFIX}-cluster'
