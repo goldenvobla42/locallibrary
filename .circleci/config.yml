@@ -27,7 +27,7 @@ workflows:
                 profile_name: OIDC-USER
                 role_arn: ${AWS_ROLE}
                 role_session_name: session-role
-          cluster: ${MY_APP_PREFIX}-cluster
+          cluster: lyricssite-cluster
           family: ${MY_APP_PREFIX}-service
           profile_name: OIDC-USER
           requires:
