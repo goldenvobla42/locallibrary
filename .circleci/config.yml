@@ -8,13 +8,13 @@ workflows:
     jobs:
       - aws-ecr/build_and_push_image:
           context: aws-dev
-          account_id: ${AWS_ACCOUNT_ID}
           auth:
             - aws-cli/setup:
                 profile_name: OIDC-USER
                 role_arn: ${AWS_ROLE}
                 role_session_name: session-role
           profile_name: OIDC-USER
+          account_id: ${AWS_ACCOUNT_ID}
           region: ${AWS_REGION}
           create_repo: true
           repo: ${MY_APP_PREFIX}
