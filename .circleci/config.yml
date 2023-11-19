@@ -15,9 +15,10 @@ workflows:
                 role_arn: ${AWS_ROLE}
           profile_name: OIDC-USER
           region: ${AWS_REGION}
-          registry_id: ${AWS_ECR_REGISTRY_ID}
+          create_repo: true
           repo: ${MY_APP_PREFIX}
           tag: ${CIRCLE_SHA1}
+
       - aws-ecs/deploy_service_update:
           context: aws-dev
           auth:
