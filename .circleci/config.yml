@@ -6,8 +6,9 @@ orbs:
 workflows:
   build-and-deploy:
     jobs:
-      - aws-ecr/build-and-push-image:
+      - aws-ecr/build_and_push_image:
           context: aws-dev
+          account_id: ${AWS_ACCOUNT_ID}
           auth:
             - aws-cli/setup:
                 profile: OIDC-USER
