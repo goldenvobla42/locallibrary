@@ -11,7 +11,7 @@ workflows:
           account_id: ${AWS_ACCOUNT_ID}
           auth:
             - aws-cli/setup:
-                profile: OIDC-USER
+                profile: 'OIDC-USER'
                 role_arn: ${AWS_ROLE}
           profile: OIDC-USER
           region: ${AWS_REGION}
@@ -29,4 +29,4 @@ workflows:
           family: ${MY_APP_PREFIX}-service
           profile: OIDC-USER
           requires:
-            - aws-ecr/build-and-push-image
+            - aws-ecr/build_and_push_image
