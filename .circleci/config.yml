@@ -14,7 +14,7 @@ workflows:
                 role_arn: ${AWS_ROLE}
                 role_session_name: session-role
           profile_name: OIDC-USER
-          account_id: ${AWS_ACCOUNT_ID}
+          account_id: ${ACCOUNT_ID}
           region: ${AWS_REGION}
           create_repo: true
           repo: ${MY_APP_PREFIX}
@@ -27,6 +27,7 @@ workflows:
                 profile_name: OIDC-USER
                 role_arn: ${AWS_ROLE}
                 role_session_name: session-role
+          account_id: ${ACCOUNT_ID}
           cluster: ${MY_APP_PREFIX}-cluster
           container_image_name_updates: container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}
           family: ${MY_APP_PREFIX}-service
