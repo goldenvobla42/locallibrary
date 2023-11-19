@@ -27,8 +27,9 @@ workflows:
                 profile_name: OIDC-USER
                 role_arn: ${AWS_ROLE}
                 role_session_name: session-role
-          cluster: lyricssite-cluster
-          family: lyricssite-service
+          region: ${AWS_REGION}
+          cluster: ${MY_APP_PREFIX}-cluster
+          family: ${MY_APP_PREFIX}-service
           profile_name: OIDC-USER
           requires:
             - aws-ecr/build_and_push_image
