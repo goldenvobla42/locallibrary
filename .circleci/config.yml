@@ -29,7 +29,7 @@ workflows:
                 role_session_name: session-role
           region: ${AWS_REGION}
           cluster: ${MY_APP_PREFIX}-cluster
-          family: lyricssite-service
+          family: ${MY_APP_PREFIX}-service
           profile_name: OIDC-USER
           requires:
             - aws-ecr/build_and_push_image
