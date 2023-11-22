@@ -20,7 +20,6 @@ workflows:
           repo: ${MY_APP_PREFIX}
           tag: ${CIRCLE_SHA1}
 
-
       - aws-ecs/deploy_service_update:
           context: aws-dev
           auth:
