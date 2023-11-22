@@ -18,7 +18,7 @@ workflows:
           region: ${AWS_REGION}
           create_repo: true
           repo: ${MY_APP_PREFIX}
-          tag: ${CIRCLE_SHA1}
+          tag: latest
 
       - aws-ecs/deploy_service_update:
           context: aws-dev
