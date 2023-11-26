@@ -47,12 +47,12 @@ workflows:
           profile_name: OIDC-USER
           requires:
             - aws-ecr/build_and_push_image
-
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - main
+#
+#  nightly:
+#    triggers:
+#      - schedule:
+#          cron: "0 0 * * *"
+#          filters:
+#            branches:
+#              only:
+#                - main
