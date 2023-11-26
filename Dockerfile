@@ -22,7 +22,7 @@ COPY . /app/
 # RUN python manage.py collectstatic --noinput
 
 # Expose the port the application runs on
-EXPOSE 8000
+EXPOSE 80
 
 # Start the application
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
