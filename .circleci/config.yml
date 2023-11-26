@@ -3,10 +3,20 @@ orbs:
   aws-cli: circleci/aws-cli@4.0
   aws-ecr: circleci/aws-ecr@9.0
   aws-ecs: circleci/aws-ecs@4.0
+  sonarcloud: socialtables/sonarcloud@1.4.0
+
 workflows:
   build-and-deploy:
     jobs:
+      - sonarcloud/scan:
+          cache-version: v0
+          github-project-slug: goldenvobla42/locallibrary
+          project-key: dsfhjskfiuehrfenriu5_locallibrary
       - aws-ecr/build_and_push_image:
+          filters:
+            branches:
+              only:
+                - main
           context: aws-dev
           auth:
             - aws-cli/setup:
@@ -22,6 +32,10 @@ workflows:
 
       - aws-ecs/deploy_service_update:
           context: aws-dev
+          filters:
+            branches:
+              only:
+                - main
           auth:
             - aws-cli/setup:
                 profile_name: OIDC-USER
@@ -33,3 +47,12 @@ workflows:
           profile_name: OIDC-USER
           requires:
             - aws-ecr/build_and_push_image
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - main
