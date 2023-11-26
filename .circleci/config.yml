@@ -9,7 +9,6 @@ workflows:
   build-and-deploy:
     jobs:
       - sonarcloud/scan-on-branch-commit:
-          cache-version: v0
           github-project-slug: goldenvobla42/locallibrary
           project-key: dsfhjskfiuehrfenriu5_locallibrary
       - aws-ecr/build_and_push_image:
