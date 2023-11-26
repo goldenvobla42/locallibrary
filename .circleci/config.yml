@@ -3,14 +3,13 @@ orbs:
   aws-cli: circleci/aws-cli@4.0
   aws-ecr: circleci/aws-ecr@9.0
   aws-ecs: circleci/aws-ecs@4.0
-  sonarcloud: socialtables/sonarcloud@1.4.0
+  sonarcloud: sonarsource/sonarcloud@2.0.0
 
 workflows:
   build-and-deploy:
     jobs:
-      - sonarcloud/scan-on-branch-commit:
-          github-project-slug: goldenvobla42/locallibrary
-          project-key: dsfhjskfiuehrfenriu5_locallibrary
+      - sonarcloud/scan:
+          sonar_token_variable_name: ${SONAR_TOKEN}
       - aws-ecr/build_and_push_image:
           filters:
             branches:
