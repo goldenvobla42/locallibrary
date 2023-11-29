@@ -3,13 +3,39 @@ orbs:
   aws-cli: circleci/aws-cli@4.0
   aws-ecr: circleci/aws-ecr@9.0
   aws-ecs: circleci/aws-ecs@4.0
+  snyk: snyk/snyk@2.0.2
   sonarcloud: sonarsource/sonarcloud@2.0.0
+  owasp: entur/owasp@0.0.19
+
+
+
+  jobs:
+    owasp:
+      - owasp/commandline_owasp_dependency_check:
+          executor: java_11
+          arguments: >-
+            --scan ./ --failOnCVSS 7 --suppression
+            ./dependency-check-suppressions.xml
+          context: global
+
+    snyk:
+      docker:
+        - image: circleci/python:latest
+      steps:
+        - checkout
+        - run: pip install requirements.txt
+        - snyk/scan
+
+#    sonar:
+#      - sonarcloud/scan:
+#          sonar_token_variable_name: ${SONAR_TOKEN}
+#
 
 workflows:
   build-and-deploy:
     jobs:
-      - sonarcloud/scan:
-          sonar_token_variable_name: ${SONAR_TOKEN}
+      - snyk
+      - owasp
       - aws-ecr/build_and_push_image:
           filters:
             branches:
@@ -46,6 +72,11 @@ workflows:
           requires:
             - aws-ecr/build_and_push_image
 #
+
+
+
+
+
 #  nightly:
 #    triggers:
 #      - schedule:
