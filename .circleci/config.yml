@@ -7,15 +7,16 @@ orbs:
   sonarcloud: sonarsource/sonarcloud@2.0.0
   owasp: entur/owasp@0.0.19
 
-  jobs:
-    owasp:
-      - owasp/commandline_owasp_dependency_check:
-          executor: java_11
-          arguments: >-
-            --scan ./ --failOnCVSS 7 --suppression
-            ./dependency-check-suppressions.xml
-          context: global
 
+  jobs:
+#    owasp:
+#      - owasp/commandline_owasp_dependency_check:
+#          executor: java_11
+#          arguments: >-
+#            --scan ./ --failOnCVSS 7 --suppression
+#            ./dependency-check-suppressions.xml
+#          context: global
+#
 #    snyk:
 #      docker:
 #        - image: circleci/python:latest
@@ -23,16 +24,16 @@ orbs:
 #        - checkout
 #        - run: pip install requirements.txt
 #        - snyk/scan
-
-#    sonar:
-#      - sonarcloud/scan:
-#          sonar_token_variable_name: ${SONAR_TOKEN}
 #
+##    sonar:
+##      - sonarcloud/scan:
+##          sonar_token_variable_name: ${SONAR_TOKEN}
+##
 
 workflows:
   build-and-deploy:
     jobs:
-#      - snyk
+      - snyk
       - owasp
       - aws-ecr/build_and_push_image:
           filters:
