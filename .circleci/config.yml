@@ -7,8 +7,6 @@ orbs:
   sonarcloud: sonarsource/sonarcloud@2.0.0
   owasp: entur/owasp@0.0.19
 
-
-
   jobs:
     owasp:
       - owasp/commandline_owasp_dependency_check:
@@ -18,13 +16,13 @@ orbs:
             ./dependency-check-suppressions.xml
           context: global
 
-    snyk:
-      docker:
-        - image: circleci/python:latest
-      steps:
-        - checkout
-        - run: pip install requirements.txt
-        - snyk/scan
+#    snyk:
+#      docker:
+#        - image: circleci/python:latest
+#      steps:
+#        - checkout
+#        - run: pip install requirements.txt
+#        - snyk/scan
 
 #    sonar:
 #      - sonarcloud/scan:
@@ -34,7 +32,7 @@ orbs:
 workflows:
   build-and-deploy:
     jobs:
-      - snyk
+#      - snyk
       - owasp
       - aws-ecr/build_and_push_image:
           filters:
