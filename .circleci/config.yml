@@ -8,14 +8,14 @@ orbs:
   owasp: entur/owasp@0.0.19
 
 
-  jobs:
-   owasp:
-     - owasp/commandline_owasp_dependency_check:
-         executor: java_11
-         arguments: >-
-           --scan ./ --failOnCVSS 7 --suppression
-           ./dependency-check-suppressions.xml
-         context: global
+  # jobs:
+  #  owasp:
+  #    - owasp/commandline_owasp_dependency_check:
+  #        executor: java_11
+  #        arguments: >-
+  #          --scan ./ --failOnCVSS 7 --suppression
+  #          ./dependency-check-suppressions.xml
+  #        context: global
 #
 #    snyk:
 #      docker:
@@ -33,7 +33,11 @@ orbs:
 workflows:
   build-and-deploy:
     jobs:
-      - owasp
+      - owasp/commandline_owasp_dependency_check:
+         arguments: >-
+           --scan ./ --failOnCVSS 7 --suppression
+           ./dependency-check-suppressions.xml
+         context: global
 #      - snyk
       - aws-ecr/build_and_push_image:
           context: aws-dev
