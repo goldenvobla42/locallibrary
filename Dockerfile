@@ -26,3 +26,4 @@ EXPOSE 80
 
 # Start the application
 CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+CMD [ "python", "manage.py", "createsuperuser", "--noinput" ]
