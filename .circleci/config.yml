@@ -36,10 +36,6 @@ workflows:
 #      - snyk
 #      - owasp
       - aws-ecr/build_and_push_image:
-          filters:
-            branches:
-              only:
-                - main
           context: aws-dev
           auth:
             - aws-cli/setup:
