@@ -6,24 +6,14 @@ orbs:
   snyk: snyk/snyk@2.0.2
   sonarcloud: sonarsource/sonarcloud@2.0.0
   owasp: entur/owasp@0.0.19
-
-
-  # jobs:
-  #  owasp:
-  #    - owasp/commandline_owasp_dependency_check:
-  #        executor: java_11
-  #        arguments: >-
-  #          --scan ./ --failOnCVSS 7 --suppression
-  #          ./dependency-check-suppressions.xml
-  #        context: global
-#
-#    snyk:
-#      docker:
-#        - image: circleci/python:latest
-#      steps:
-#        - checkout
-#        - run: pip install requirements.txt
-#        - snyk/scan
+jobs:
+    snyk:
+      docker:
+        - image: circleci/python:latest
+      steps:
+        - checkout
+        - run: pip install requirements.txt
+        - snyk/scan
 #
 ##    sonar:
 ##      - sonarcloud/scan:
@@ -33,12 +23,16 @@ orbs:
 workflows:
   build-and-deploy:
     jobs:
-      - owasp/commandline_owasp_dependency_check:
-         arguments: >-
-           --scan ./ --failOnCVSS 7 --suppression
-           ./dependency-check-suppressions.xml
-         context: global
-#      - snyk
+      # - sonarcloud/scan-docker:
+      #     sonar_token_variable_name: ${SONAR_TOKEN}
+
+      # #     OWASP job is working, but I don't trust it
+      # - owasp/commandline_owasp_dependency_check:
+      #    arguments: >-
+      #      --scan ./ --failOnCVSS 7 --suppression
+      #      ./dependency-check-suppressions.xml
+      #    context: global
+      - snyk
       - aws-ecr/build_and_push_image:
           context: aws-dev
           auth:
