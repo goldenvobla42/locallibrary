@@ -17,7 +17,7 @@ jobs:
 
     owasp-dependency-check:
       docker:
-        - image: circleci/java:8
+        - image: circleci/java:8-jdk
       steps:
         - checkout
         - run:
@@ -53,6 +53,10 @@ workflows:
       - owasp-dependency-check
       - aws-ecr/build_and_push_image:
           context: aws-dev
+          filters:
+            branches:
+              only:
+                - main
           auth:
             - aws-cli/setup:
                 profile_name: OIDC-USER
