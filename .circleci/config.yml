@@ -27,9 +27,8 @@ jobs:
               unzip -qq dependency-check-9.0.1-release.zip
         - run:
             name: Run OWASP Dependency-Check
-            command: ls -la
-#              cd dependency-check/bin
-#              ./dependency-check.sh --scan ../locallibrary --format ALL --project "Locallibrary"
+            command: |
+              dependency-check/bin/dependency-check.sh --scan . --format ALL --project "Locallibrary"
 
 #
 ##    sonar:
