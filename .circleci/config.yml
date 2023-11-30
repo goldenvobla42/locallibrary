@@ -45,7 +45,7 @@ jobs:
               unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
               export PATH=$SONAR_SCANNER_HOME/bin:$PATH
               export SONAR_SCANNER_OPTS="-server"
-              sonar-scanner -Dsonar.organization=dsfhjskfiuehrfenriu -Dsonar.projectKey=dsfhjskfiuehrfenriu5_locallibrary -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io 
+              sonar-scanner -Dsonar.organization=dsfhjskfiuehrfenriu5 -Dsonar.projectKey=dsfhjskfiuehrfenriu5_locallibrary -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io 
 
 #
 ##    sonar:
