@@ -29,7 +29,7 @@ jobs:
             name: Run OWASP Dependency-Check
             command: |
               cd dependency-check/bin
-              ./dependency-check.sh --scan /path/to/your/project --format ALL --project "Your Project Name"
+              ./dependency-check.sh --scan . --format ALL --project "Locallibrary"
 
 #
 ##    sonar:
