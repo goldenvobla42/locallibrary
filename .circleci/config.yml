@@ -23,8 +23,8 @@ jobs:
         - run:
             name: Install OWASP Dependency-Check
             command: |
-              wget https://github.com/jeremylong/DependencyCheck/archive/refs/heads/main.zip
-              unzip -qq main.zip
+              wget https://github.com/jeremylong/DependencyCheck/releases/download/v9.0.1/dependency-check-9.0.1-release.zip
+              unzip -qq dependency-check-9.0.1-release.zip
         - run:
             name: Run OWASP Dependency-Check
             command: |
