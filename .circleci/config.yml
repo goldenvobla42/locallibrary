@@ -17,7 +17,7 @@ jobs:
 
     owasp-dependency-check:
       docker:
-        - image: circleci/python:latest
+        - image: circleci/java:latest
       steps:
         - checkout
         - run:
