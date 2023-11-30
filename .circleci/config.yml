@@ -33,7 +33,7 @@ jobs:
 
     sonarcloud-analysis:
       docker:
-        - image: circleci/python:3.x  # Use an image with your project's dependencies installed
+        - image: circleci/python:latest
       steps:
         - checkout
         - run:
