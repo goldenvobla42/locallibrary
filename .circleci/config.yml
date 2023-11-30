@@ -14,6 +14,23 @@ jobs:
         - checkout
         - run: pip install -r requirements.txt
         - snyk/scan
+
+    owasp-dependency-check:
+      docker:
+        - image: your_python_image_with_dependencies_installed
+      steps:
+        - checkout
+        - run:
+            name: Install OWASP Dependency-Check
+            command: |
+              wget https://github.com/jeremylong/DependencyCheck/archive/refs/heads/main.zip
+              unzip -qq main.zip
+        - run:
+            name: Run OWASP Dependency-Check
+            command: |
+              cd dependency-check/bin
+              ./dependency-check.sh --scan /path/to/your/project --format ALL --project "Your Project Name"
+
 #
 ##    sonar:
 ##      - sonarcloud/scan:
@@ -33,6 +50,7 @@ workflows:
       #      ./dependency-check-suppressions.xml
       #    context: global
       - snyk
+      - owasp-dependency-check
       - aws-ecr/build_and_push_image:
           context: aws-dev
           auth:
