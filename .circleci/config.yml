@@ -6,6 +6,7 @@ orbs:
   snyk: snyk/snyk@2.0.2
   sonarcloud: sonarsource/sonarcloud@2.0.0
   owasp: entur/owasp@0.0.19
+
 jobs:
     snyk:
       docker:
@@ -30,6 +31,22 @@ jobs:
             command: |
               dependency-check/bin/dependency-check.sh --scan . --format ALL --project "Locallibrary"
 
+    sonarcloud-analysis:
+      docker:
+        - image: circleci/python:3.x  # Use an image with your project's dependencies installed
+      steps:
+        - checkout
+        - run:
+            name: SonarCloud Analysis
+            command: |
+              export SONAR_SCANNER_VERSION=5.0.1.3006
+              export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+              curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+              unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+              export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+              export SONAR_SCANNER_OPTS="-server"
+              sonar-scanner -Dsonar.organization=dsfhjskfiuehrfenriu -Dsonar.projectKey=dsfhjskfiuehrfenriu5_locallibrary -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io 
+
 #
 ##    sonar:
 ##      - sonarcloud/scan:
@@ -42,7 +59,7 @@ workflows:
       # - sonarcloud/scan-docker:
       #     sonar_token_variable_name: ${SONAR_TOKEN}
 
-      # #     OWASP job is working, but I don't trust it
+      # #     OWASP job is working, but I don't trust it hehehe
       # - owasp/commandline_owasp_dependency_check:
       #    arguments: >-
       #      --scan ./ --failOnCVSS 7 --suppression
@@ -50,6 +67,7 @@ workflows:
       #    context: global
       - snyk
       - owasp-dependency-check
+      - sonarcloud-analysis
       - aws-ecr/build_and_push_image:
           context: aws-dev
           filters:
